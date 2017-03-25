@@ -1,0 +1,63 @@
+doctype html
+html
+    head
+        title The HP Printer & Scanner
+        style.
+            body {
+                background: #f2f2f2;
+                font: 14pt serif;
+                text-align: center;
+            }
+            button {
+                background: #3cb371;
+                border: none;
+                border-radius: 10px;
+                color: #ffffff;
+                display: block;
+                font: bold larger serif;
+                margin-bottom: 0.75em;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 1em;
+                text-align: center;
+                text-decoration: none;
+                width: 15em;
+            }
+            button:hover {
+                box-shadow: inset 0 0 30px 15px #f2f2f2;
+            }
+            button.done {
+                background: #b22222;
+            }
+            form {
+                margin-left: 400px;
+                margin-top: 10px;
+            }
+            img {
+                float: left;
+                margin: 10px;
+                width: 380px;
+            }
+            p.error {
+                color: red;
+                font-style: italics;
+                font-weight: bold;
+            }
+    body
+        img(src='/images/lnasto-Scanner-ln-800px.png')
+        p.error #{error}
+        form(action='/pi/scan', method='post')
+            p 
+                | Scanned 
+                input(name='pages', readonly=true, size=2, value=pages)
+                |  pages out of 
+                input(min=1, name='total', placeholder='?', size=2, type='number', value=total)
+                |  total.
+                input(name='id', type='hidden', value=id)
+            br
+            button(name='action', type='submit', value='add') Scan the next page...
+            br
+            button(name='action', type=-'submit', value='pdf') Download as a PDF
+            br
+            br
+            button.done(name='action', type='submit', value='done') Downloaded - delete the scan!

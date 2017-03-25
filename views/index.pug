@@ -1,0 +1,93 @@
+doctype html
+html
+    head
+        title The HP Printer & Scanner
+        style.
+            body {
+                background: #f2f2f2;
+                font: 14pt serif;
+                text-align: center;
+            }
+            a {
+                background: #3cb371;
+                border: none;
+                border-radius: 10px;
+                color: #ffffff;
+                display: block;
+                font: bold larger serif;
+                margin-bottom: 0.75em;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 1em;
+                text-align: center;
+                text-decoration: none;
+                width: 85%;
+            }
+            a:hover {
+                box-shadow: inset 0 0 30px 15px #f2f2f2;
+            }
+            a.brs {
+                background: #b22222;
+            }
+            a.reset {
+                background: #0033cc;
+            }
+            img {
+                margin: 10px;
+                width: 380px;
+            }
+            img.brs {
+                width: 190px;
+            }
+            p {
+                margin-bottom: 0.25em;
+                margin-top: 0.5em;
+            }
+            p.error {
+                color: red;
+                font-style: italics;
+                font-weight: bold;
+            }
+            span.type {
+                color: green;
+                font-size: smaller;
+                font-weight: bold;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            tr td {
+                border-bottom: thick solid black;
+            }
+            tr:last-child td {
+                border-bottom: none;
+            }
+    body
+        p.error #{error}
+        table
+            tr
+                td
+                    img(src='/images/lnasto-Scanner-ln-800px.png')
+                td
+                    a(href='/pi/scan') Scan a document
+                    a(href='/pi/scan/image') Scan and download a picture
+                    a.reset(href='/pi/scan/reset') Not working? Click here to reset
+            tr
+                td
+                    img(src='/images/openclipart-on-printer-800px.png')
+                td
+                    a(href='/pi/print') Cancel print jobs
+                    a(href='/pi/print') Manage the printer
+                    p 
+                        | Ink cartridges: 61 or 61#[span.type XL]
+                        br
+                        small The black/white and color cartridges use the same number.
+                    br
+                    a.reset(href='/pi/print/reset') Not working? Click here to reset
+            tr
+                td
+                    img.brs(src='/images/TzeenieWheenie-Power-On-Off-Switch-red-2-800px.png')
+                td
+                    a.brs(href='/pi/reset') BIG RED SWITCH - when all else fails, click here
+                    p IP address: #[b #{ip}]

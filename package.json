@@ -1,0 +1,27 @@
+{
+  "name": "pi-print-scan",
+  "version": "1.0.0",
+  "description": "Web app to manage a wireless Raspberry Pi printer/scanner server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rbwohlfarth/pi-print-scan.git"
+  },
+  "author": "Robert Wohlfarth <rbwohlfarth@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/rbwohlfarth/pi-print-scan/issues"
+  },
+  "homepage": "https://github.com/rbwohlfarth/pi-print-scan#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "passport": "^0.3.2",
+    "passport-google-oauth": "^1.0.0",
+    "pug": "^2.0.0-beta11",
+    "temp": "^0.8.3"
+  }
+}
