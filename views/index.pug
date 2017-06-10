@@ -9,44 +9,37 @@ html
                 text-align: center;
             }
             a {
-                background: #3cb371;
                 border: none;
-                border-radius: 10px;
-                color: #ffffff;
+                border-radius: 5px;
                 display: block;
-                font: bold larger serif;
-                margin-bottom: 0.75em;
-                margin-left: auto;
-                margin-right: auto;
-                padding: 1em;
-                text-align: center;
+                font: larger serif;
+                padding: 0.1em 0.5em;
+                text-align: left;
                 text-decoration: none;
                 width: 85%;
             }
             a:hover {
-                box-shadow: inset 0 0 30px 15px #f2f2f2;
+                background: #3cb371;
+                color: #ffffff;
             }
             a.brs {
                 background: #b22222;
+                color: white;
+                display: inline;
             }
-            a.reset {
-                background: #0033cc;
+            img.icon {
+                margin: 5px;
+                width: 32px;
             }
-            img {
-                margin: 10px;
-                width: 380px;
-            }
-            img.brs {
-                width: 190px;
-            }
-            p {
-                margin-bottom: 0.25em;
-                margin-top: 0.5em;
+            img.scan {
+                max-width: 600px;
             }
             p.error {
                 color: red;
                 font-style: italics;
                 font-weight: bold;
+                margin-bottom: 0.25em;
+                margin-top: 0.5em;
             }
             span.type {
                 color: green;
@@ -57,36 +50,77 @@ html
                 border-collapse: collapse;
                 width: 100%;
             }
-            tr td {
-                border-bottom: thick solid black;
+            td {
+                text-align: left;
+                vertical-align: top;
             }
-            tr:last-child td {
-                border-bottom: none;
-            }
+            th {text-align: left;}
     body
-        p.error #{error}
         table
             tr
                 td
-                    img(src='/images/lnasto-Scanner-ln-800px.png')
+                    table
+                        tr
+                            th
+                                img.icon(src='/images/lnasto-Scanner-ln-800px.png')
+                                | Scanner
+                            th
+                        tr
+                            td
+                                a(href='/pi/scan') Scan a document
+                            td
+                        tr
+                            td
+                                a(href='/pi/scan/image') Scan and download a picture
+                            td
+                        tr
+                            td
+                                a.reset(href='/pi/scan/reset') Not working? Click here to reset
+                            td
+                        tr
+                            td
+                                hr
+                            td
+                                hr
+                        tr
+                            th
+                                img.icon(src='/images/openclipart-on-printer-800px.png')
+                                | Printer
+                            th
+                        tr
+                            td
+                                a(href='/pi/print') Cancel print jobs
+                            td
+                                | Ink cartridges: 61 or 61#[span.type XL]
+                        tr
+                            td
+                                a(href='/pi/print') Manage the printer
+                            td
+                                small The black and color cartridges use the same number.
+                        tr
+                            td
+                                a.reset(href='/pi/print/reset') Not working? Click here to reset
+                            td
+                        tr
+                            td
+                                hr
+                            td
+                                hr
+                        tr
+                            td
+                                p.error !{error}
+                            td
+                        tr
+                            td
+                                hr
+                            td
+                                hr
+                        tr
+                            td
+                                img.icon(src='/images/TzeenieWheenie-Power-On-Off-Switch-red-2-800px.png')
+                                a.brs(href='/pi/reset') BIG RED SWITCH
+                            td
+                                small When all else fails, click here
                 td
-                    a(href='/pi/scan') Scan a document
-                    a(href='/pi/scan/image') Scan and download a picture
-                    a.reset(href='/pi/scan/reset') Not working? Click here to reset
-            tr
-                td
-                    img(src='/images/openclipart-on-printer-800px.png')
-                td
-                    a(href='/pi/print') Cancel print jobs
-                    a(href='/pi/print') Manage the printer
-                    p 
-                        | Ink cartridges: 61 or 61#[span.type XL]
-                        br
-                        small The black/white and color cartridges use the same number.
-                    br
-                    a.reset(href='/pi/print/reset') Not working? Click here to reset
-            tr
-                td
-                    img.brs(src='/images/TzeenieWheenie-Power-On-Off-Switch-red-2-800px.png')
-                td
-                    a.brs(href='/pi/reset') BIG RED SWITCH - when all else fails, click here
+                    if image
+                        img.scan(src=image)

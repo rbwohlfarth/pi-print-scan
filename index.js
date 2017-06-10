@@ -20,11 +20,10 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 app.get('/pi/print', function (req, res) {
-    var ip = os.networkInterfaces().eth0[0].address;
-    res.redirect('https://'+ip+':631/jobs');
+    res.redirect('https://raspberrypi:631/jobs');
 });
 app.get('/pi/print/reset', function (req, res) {
-    exec('systemd restart cupsd', function (err, stdout, stderr) {
+    exec('sudo systemd restart cupsd', function (err, stdout, stderr) {
         if (!err) { res.redirect('/'); }
         else { res.render('index', {error: 'Printer reset FAILED. Please try again.'}) }
     });
@@ -77,11 +76,11 @@ app.post('/pi/scan', function (req, res) {
 });
 app.get('/pi/scan/image', function (req, res) {
     exec('./scan-image.sh', function (err, stdout, stderr) {
-        if (!err) {
-            res.set('Content-Type', 'image/jpeg');
-            res.end(new Buffer(stdout, 'binary'));
+        if (!err) { 
+           stdout.replace(/\n$/, '');
+           res.render('index', {image: '/scans/' + stdout}); 
         }
-        else { res.render('index', {error: 'No space left to scan the picture.'}); }
+        else { res.render('index', {error: 'No space left to scan the picture.<br /><small>' + err.message + '</small>'}); }
     });
 });
 app.get('/pi/scan/reset', function (req, res) {
@@ -94,4 +93,4 @@ app.use(express.static('static'));
 
 
 // Run the web server.
-app.listen(8080, '0.0.0.0');
+app.listen(80, '0.0.0.0');
